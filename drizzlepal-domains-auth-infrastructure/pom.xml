@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.drizzlepal.domains</groupId>
+        <artifactId>drizzlepal-domains-auth</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <groupId>com.drizzlepal.domains</groupId>
+    <artifactId>drizzlepal-domains-auth-infrastructure</artifactId>
+
+    <dependencies>
+        <!-- DAO -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
+        <!-- 通用加密 -->
+        <dependency>
+            <groupId>com.drizzlepal</groupId>
+            <artifactId>drizzlepal-crypto</artifactId>
+        </dependency>
+        <!-- api -->
+        <dependency>
+            <groupId>com.drizzlepal.springboot3</groupId>
+            <artifactId>drizzlepal-webstarter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+        <!-- 数据库版本控制 -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+        </dependency>
+        <!-- UULD -->
+        <dependency>
+            <groupId>de.huxhorn.sulky</groupId>
+            <artifactId>de.huxhorn.sulky.ulid</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drizzlepal.domains</groupId>
+            <artifactId>drizzlepal-domains-auth-domain</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.drizzlepal.domains</groupId>
+            <artifactId>drizzlepal-domains-auth-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

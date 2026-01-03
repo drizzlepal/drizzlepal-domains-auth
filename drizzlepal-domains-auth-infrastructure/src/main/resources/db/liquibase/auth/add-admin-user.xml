@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:secure="http://www.liquibase.org/xml/ns/secure"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/secure http://www.liquibase.org/xml/ns/secure/liquibase-secure-latest.xsd">
+    <changeSet id="add-admin-user" author="drizzlepal">
+        <insert tableName="user">
+            <column name="id" value="0A"></column>
+            <column name="name" value="admin"></column>
+            <column name="status" value="active"></column>
+            <column name="password"
+                value="ad93e5185e2cac028800dc061533411f3fcbb47d244a53ef82460c5f0d5d91ba1d1b029625c205df17d2f1c538a7adb07b81b1d9aa149fb64123ec4534908377"></column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

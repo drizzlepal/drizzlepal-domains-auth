@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:secure="http://www.liquibase.org/xml/ns/secure"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/secure http://www.liquibase.org/xml/ns/secure/liquibase-secure-latest.xsd">
+    <changeSet id="create-user-table" author="drizzlepal">
+        <createTable tableName="user" remarks="用户表">
+            <column name="id" type="varchar(64)" remarks="用户唯一标识符">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(128)" remarks="用户姓名" defaultValue="" />
+            <column name="password" type="varchar(256)" remarks="用户密码（已加密存储）" defaultValue="">
+                <constraints nullable="false" />
+            </column>
+            <column name="email" type="varchar(256)" remarks="用户邮箱地址" defaultValue="" />
+            <column name="mobile" type="varchar(32)" remarks="用户手机号码" defaultValue="" />
+            <column name="organization_id" type="varchar(64)" remarks="所属组织机构ID" defaultValue="" />
+            <column name="status" type="varchar(32)" remarks="用户状态" defaultValue="active" />
+            <column name="create_time" type="timestamp" remarks="创建时间"
+                defaultValueDate="now()">
+                <constraints nullable="false" />
+            </column>
+            <column name="update_time" type="timestamp" remarks="更新时间" />
+        </createTable>
+
+        <createIndex tableName="user" indexName="idx_user_email">
+            <column name="email" />
+        </createIndex>
+
+        <createIndex tableName="user" indexName="idx_user_mobile">
+            <column name="mobile" />
+        </createIndex>
+
+        <createIndex tableName="user" indexName="idx_user_org">
+            <column name="organization_id" />
+        </createIndex>
+    </changeSet>
+
+    <include file="classpath:db/liquibase/auth/add-admin-user.xml" />
+
+</databaseChangeLog>
