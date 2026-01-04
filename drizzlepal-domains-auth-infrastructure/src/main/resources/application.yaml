@@ -1,3 +1,20 @@
+server:
+  port: ${AUTH_SERVER_PORT:9990}
+
 spring:
-  profiles:
-    active: ${ACTIVE_PROFILE:dev}
+  application:
+    name: drizzlepal-domains-auth
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS_SERVER_HOST}:${NACOS_SERVER_PORT}
+        username: ${NACOS_SERVER_USERNAME}
+        password: ${NACOS_SERVER_PASSWORD}
+        namespace: ${NACOS_SERVER_NAMESPACE}
+  config:
+    import:
+      - nacos:drizzlepal-domains-datasource.yaml?refresh=true&namespace=${NACOS_SERVER_NAMESPACE}&group=drizzlepal-domains
+      - nacos:drizzlepal-domains-dubbo.yaml?refresh=true&namespace=${NACOS_SERVER_NAMESPACE}&group=drizzlepal-domains
+      - nacos:drizzlepal-domains-auth-springdoc.yaml?refresh=true&namespace=${NACOS_SERVER_NAMESPACE}&group=${spring.application.name}
+      - nacos:drizzlepal-domains-auth-dubbo.yaml?refresh=true&namespace=${NACOS_SERVER_NAMESPACE}&group=${spring.application.name}
+      - nacos:drizzlepal-domains-auth-datasource.yaml?refresh=true&namespace=${NACOS_SERVER_NAMESPACE}&group=${spring.application.name}
