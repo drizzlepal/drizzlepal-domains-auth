@@ -6,14 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drizzlepal.domains.auth.api.AuthApi;
-import com.drizzlepal.domains.auth.api.dto.request.LoginRequest;
-import com.drizzlepal.domains.auth.api.dto.request.RegisterRequest;
-import com.drizzlepal.domains.auth.api.dto.response.LoginResponse;
-import com.drizzlepal.domains.auth.api.dto.response.RegisterResponse;
 import com.drizzlepal.domains.auth.infrastructure.controller.dto.request.UserLoginRequestDto;
 import com.drizzlepal.domains.auth.infrastructure.controller.dto.request.UserRegisterRequestDto;
 import com.drizzlepal.domains.auth.infrastructure.controller.dto.response.UserLoginResponseDto;
 import com.drizzlepal.domains.auth.infrastructure.controller.dto.response.UserRegisterResponseDto;
+import com.drizzlepal.domains.common.infrastructure.controller.dto.DomainControllerRequest;
+import com.drizzlepal.domains.common.infrastructure.controller.dto.DomainControllerResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,17 +32,15 @@ public class AuthController {
     @Operation(summary = "用户注册", description = "用户注册接口")
     public UserRegisterResponseDto registerUser(
             @Valid @RequestBody UserRegisterRequestDto userRegisterRequestDto) {
-        RegisterResponse register = authApi.register(RegisterRequest.builder().build());
-        UserRegisterResponseDto userRegisterResponseDto = UserRegisterResponseDto.fromDomain(register);
-        return userRegisterResponseDto;
+        return DomainControllerResponse.fromApiResponse(UserRegisterResponseDto.class,
+                authApi.register(DomainControllerRequest.toApiRequest(userRegisterRequestDto)));
     }
 
     @PostMapping("/login")
     @Operation(summary = "用户登录", description = "用户登录接口，返回用户信息")
     public UserLoginResponseDto loginUser(@Valid @RequestBody UserLoginRequestDto userLoginRequest) {
-        LoginResponse login = authApi.login(LoginRequest.builder().build());
-        UserLoginResponseDto userLoginResponseDto = UserLoginResponseDto.fromDomain(login);
-        return userLoginResponseDto;
+        return DomainControllerResponse.fromApiResponse(UserLoginResponseDto.class,
+                authApi.login(DomainControllerRequest.toApiRequest(userLoginRequest)));
     }
 
 }

@@ -8,10 +8,8 @@ import com.drizzlepal.domains.auth.domain.model.User;
 import com.drizzlepal.domains.auth.domain.port.PasswordEncoder;
 import com.drizzlepal.domains.auth.domain.repository.UserRepository;
 import com.drizzlepal.domains.auth.domain.service.UserDomainService;
-import com.drizzlepal.domains.auth.exception.RetryFailedException;
 import com.drizzlepal.domains.auth.exception.UserLoginInfoException;
 import com.drizzlepal.domains.auth.exception.UserNotExistsException;
-import com.drizzlepal.domains.auth.exception.checked.UserIdGenerationFailedException;
 
 public class AuthApplication {
 
@@ -31,20 +29,16 @@ public class AuthApplication {
     public LoginResult login(LoginCommand loginCommand) {
         User user = userRepository.findUserNotDeletedByUsername(loginCommand.getUsername())
                 .orElseThrow(() -> new UserNotExistsException(loginCommand.getUsername()));
-        if (!user.verifyPassword(loginCommand.getPassword(), this.passwordEncoder))
+        if (!user.verifyPassword(loginCommand.getPassword(), this.passwordEncoder)) {
             throw new UserLoginInfoException();
+        }
         return LoginResult.builder().build();
     }
 
     public RegisterResult register(RegisterCommand registerCommand) {
         userDomainService.ensureRegisterUserNameUnique(registerCommand.getUsername());
         User user = registerCommand.toDomainUser();
-        try {
-            userRepository.create(user);
-        } catch (UserIdGenerationFailedException e) {
-            throw new RetryFailedException("User Id Generate Failed, Please Retry Later.");
-        }
+        userRepository.create(user);
         return RegisterResult.builder().build();
     }
-
 }

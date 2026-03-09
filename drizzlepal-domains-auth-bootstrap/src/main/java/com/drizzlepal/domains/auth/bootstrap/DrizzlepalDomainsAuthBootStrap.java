@@ -7,12 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.drizzlepal.domains.auth")
-@MapperScan(basePackages = {
-        "com.drizzlepal.domains.auth.infrastructure.repository.mapper" })
+@MapperScan(basePackages = "com.drizzlepal.domains.auth.infrastructure.repository.mapper")
 public class DrizzlepalDomainsAuthBootStrap {
 
     public static void main(String[] args) {
         SpringApplication.run(DrizzlepalDomainsAuthBootStrap.class, args);
     }
-
 }

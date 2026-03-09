@@ -7,8 +7,11 @@ import lombok.Data;
 
 @Data
 @Builder
-public class LoginRequest implements DomainApiRequest {
+public class GetRolePageRequest implements DomainApiRequest {
 
-    private String username;
-    private String password;
+    private Integer pageNum;
+
+    private Integer pageSize;
+
+    private String keyword;
 }

@@ -1,9 +1,11 @@
 package com.drizzlepal.domains.auth.api.dto.response;
 
+import com.drizzlepal.domains.common.api.dto.DomainApiResponse;
+
 import lombok.Data;
 
 @Data
-public class RegisterResponse {
+public class RegisterResponse implements DomainApiResponse {
 
     private String userId;
 
@@ -13,5 +15,4 @@ public class RegisterResponse {
         this.userId = userId;
         this.userStatus = userStatus;
     }
-
 }

@@ -12,4 +12,12 @@
     <groupId>com.drizzlepal.domains</groupId>
     <artifactId>drizzlepal-domains-auth-api</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.drizzlepal.domains</groupId>
+            <artifactId>drizzlepal-domains-common-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -31,6 +31,11 @@ public class User {
     private String name;
 
     /**
+     * 用户名（登录账号）
+     */
+    private String username;
+
+    /**
      * 用户密码
      */
     private String password;
@@ -49,6 +54,11 @@ public class User {
      * 用户所属组织机构ID
      */
     private String organizationId;
+
+    /**
+     * 用户角色ID
+     */
+    private String roleId;
 
     /**
      * 用户状态
@@ -73,5 +83,4 @@ public class User {
     public boolean verifyPassword(String encodedPassword, PasswordEncoder passwordEncoder) {
         return passwordEncoder.matches(password, encodedPassword);
     }
-
 }
